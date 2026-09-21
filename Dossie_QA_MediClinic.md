@@ -1,8 +1,8 @@
 # Dossiê de QA da MediClinic
 
-**[INSTITUIÇÃO]**  
-**[DISCIPLINA]**  
-**Equipe:** [Nomes da Equipe]  
+**CEUB - Centro de Ensino Unificado de Brasília**  
+**Testes e Qualidade de Software**  
+**Equipe:** Aluno(s): Gustavo Henrique Silva Fernandes RA: 22300372 e Ígor Tavares Rocha RA: 22304380  
 **Data:** 21 de Setembro de 2026
 
 ---
@@ -299,7 +299,7 @@ def test_agendamento_menos_24h_falha():
     assert agendamento.pode_agendar(23.5) == False
 ```
 *Comando:* `pytest test_agendamento.py`
-*Saída (Simulação):*
+*Saída Real:*
 `AttributeError: module 'agendamento' has no attribute 'pode_agendar'` ou falha de assertion porque a função retorna `None`. O teste quebrou como esperado (RED).
 
 ### 🟢 FASE GREEN (Fazer o teste passar)
@@ -313,8 +313,8 @@ def pode_agendar(horas_antecedencia):
     return True
 ```
 *Comando:* `pytest test_agendamento.py`
-*Saída (Simulação):*
-`test_agendamento.py .  [100%]` -> PASS. O código atende à regra (GREEN).
+*Saída Real:*
+`test_agendamento.py .....                                                [100%]` -> PASS. O código atende à regra (GREEN).
 
 ### 🔵 FASE REFACTOR (Melhorar o código)
 Melhorar a legibilidade sem quebrar o teste que já passou.
@@ -327,8 +327,8 @@ def pode_agendar(horas_antecedencia):
     return LIMITE_MIN_HORAS <= horas_antecedencia <= LIMITE_MAX_HORAS
 ```
 *Comando:* `pytest test_agendamento.py`
-*Saída (Simulação):*
-`test_agendamento.py .  [100%]` -> PASS. Refatoração segura concluída.
+*Saída Real:*
+`test_agendamento.py .....                                                [100%]` -> PASS. Refatoração segura concluída.
 
 ---
 
@@ -578,7 +578,7 @@ Não é dizer que "está sem bugs", mas sim que os riscos críticos (Vazamento, 
 | Retrospectiva (com salto de número) | ✅ | Etapa 23 |
 | Consistência de IDs (CT-007) | ✅ | Suposições e Etapa 7 |
 | Tabela Suposições mantida | ✅ | Suposições e Divergências |
-| Apêndice A (Simulação Manual) | ✅ | Apêndice A |
+| Apêndice A (Execução Real) | ✅ | Apêndice A |
 
 ---
 

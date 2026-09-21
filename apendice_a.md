@@ -38,23 +38,46 @@ def test_validacao_antecedencia(horas, esperado):
     assert pode_agendar(horas) == esperado
 ```
 
-**4. Execução dos testes e cobertura (Simulação SAÍDA ESPERADA)**
+**4. Execução dos testes e cobertura (SAÍDA REAL)**
 Comando 1 (Rodar testes com relatório v):
-`pytest test_agendamento.py -v`
-*Saída Esperada (Simulação):*
+`python -m pytest test_agendamento.py -v`
+*Saída Real:*
 ```
-test_agendamento.py::test_validacao_antecedencia[test_menos_24h] PASSED
-test_agendamento.py::test_validacao_antecedencia[test_24h] PASSED
-...
+============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\igor.itr\Videos\testes-02
+plugins: cov-7.1.0
+collecting ... collected 5 items
+
+test_agendamento.py::test_validacao_antecedencia[test_menos_24h] PASSED  [ 20%]
+test_agendamento.py::test_validacao_antecedencia[test_24h] PASSED        [ 40%]
+test_agendamento.py::test_validacao_antecedencia[test_entre] PASSED      [ 60%]
+test_agendamento.py::test_validacao_antecedencia[test_90_dias] PASSED    [ 80%]
+test_agendamento.py::test_validacao_antecedencia[test_mais_90_dias] PASSED [100%]
+
+============================== 5 passed in 0.08s ==============================
 ```
 Comando 2 (Rodar cobertura):
-`pytest --cov=agendamento --cov-report=term-missing`
-*Saída Esperada (Simulação):*
+`python -m pytest --cov=agendamento --cov-report=term-missing test_agendamento.py`
+*Saída Real:*
 ```
+============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\igor.itr\Videos\testes-02
+plugins: cov-7.1.0
+collected 5 items
+
+test_agendamento.py .....                                                [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.14-final-0 _______________
+
 Name             Stmts   Miss  Cover   Missing
 ----------------------------------------------
-agendamento.py       3      0   100%
+agendamento.py       4      0   100%
 ----------------------------------------------
+TOTAL                4      0   100%
+============================== 5 passed in 0.15s ==============================
 ```
 
 **5. Renderização do Diagrama Mermaid**
