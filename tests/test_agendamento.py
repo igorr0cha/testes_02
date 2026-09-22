@@ -1,5 +1,5 @@
 import pytest
-from agendamento import pode_agendar
+from src.agendamento import pode_agendar
 
 @pytest.mark.parametrize("horas, esperado", [
     (23.99, False), 

@@ -190,7 +190,7 @@ stateDiagram-v2
     Realizada --> [*]
 ```
 
-![Minha foto local](etapa_6.png)
+![Diagrama de estados](../artifacts/etapa_6.png)
 
 
 ---
@@ -290,20 +290,20 @@ stateDiagram-v2
 
 ### 🔴 FASE RED (Criar o teste falho)
 O QA cria o arquivo de teste antes do dev escrever a função.
-*Código do teste (`test_agendamento.py`):*
+*Código do teste (`tests/test_agendamento.py`):*
 ```python
-import agendamento
+from src import agendamento
 
 def test_agendamento_menos_24h_falha():
     # Menos de 24 horas deve ser rejeitado (Falso)
     assert agendamento.pode_agendar(23.5) == False
 ```
-*Comando:* `pytest test_agendamento.py`
+*Comando:* `pytest tests/test_agendamento.py`
 *Saída Real:*
 `AttributeError: module 'agendamento' has no attribute 'pode_agendar'` ou falha de assertion porque a função retorna `None`. O teste quebrou como esperado (RED).
 
 ### 🟢 FASE GREEN (Fazer o teste passar)
-O desenvolvedor implementa a lógica mínima no arquivo `agendamento.py`.
+O desenvolvedor implementa a lógica mínima no arquivo `src/agendamento.py`.
 ```python
 def pode_agendar(horas_antecedencia):
     if horas_antecedencia < 24:
@@ -312,9 +312,9 @@ def pode_agendar(horas_antecedencia):
         return False
     return True
 ```
-*Comando:* `pytest test_agendamento.py`
+*Comando:* `pytest tests/test_agendamento.py`
 *Saída Real:*
-`test_agendamento.py .....                                                [100%]` -> PASS. O código atende à regra (GREEN).
+`tests/test_agendamento.py .....                                          [100%]` -> PASS. O código atende à regra (GREEN).
 
 ### 🔵 FASE REFACTOR (Melhorar o código)
 Melhorar a legibilidade sem quebrar o teste que já passou.
@@ -326,21 +326,21 @@ def pode_agendar(horas_antecedencia):
     # Verifica regras de antecedencia (RF06, RF07)
     return LIMITE_MIN_HORAS <= horas_antecedencia <= LIMITE_MAX_HORAS
 ```
-*Comando:* `pytest test_agendamento.py`
+*Comando:* `pytest tests/test_agendamento.py`
 *Saída Real:*
-`test_agendamento.py .....                                                [100%]` -> PASS. Refatoração segura concluída.
+`tests/test_agendamento.py .....                                          [100%]` -> PASS. Refatoração segura concluída.
 
 ---
 
 ## ETAPA 12 — Testes automatizados (pytest)
 
-Organização e parametrização dos 5 cenários limite em `test_agendamento.py`.
-Arquivo `agendamento.py` contém a lógica refatorada acima.
+Organização e parametrização dos 5 cenários limite em `tests/test_agendamento.py`.
+Arquivo `src/agendamento.py` contém a lógica refatorada acima.
 
-**Arquivo `test_agendamento.py`:**
+**Arquivo `tests/test_agendamento.py`:**
 ```python
 import pytest
-from agendamento import pode_agendar
+from src.agendamento import pode_agendar
 
 @pytest.mark.parametrize("horas, esperado", [
     (23.99, False),       # menos de 24h (CT-006)
@@ -358,7 +358,7 @@ def test_validacao_antecedencia(horas, esperado):
 
 ## ETAPA 13 — Análise de cobertura
 
-*Tabela Linha-a-Linha de `agendamento.py`:*
+*Tabela Linha-a-Linha de `src/agendamento.py`:*
 1. `LIMITE_MIN_HORAS = 24` (Coberta)
 2. `LIMITE_MAX_HORAS = 90 * 24` (Coberta)
 3. `def pode_agendar(horas_antecedencia):` (Coberta)
@@ -500,7 +500,7 @@ Consolidação total demonstrando a rastreabilidade ponta-a-ponta (do requisito 
 A decisão baseia-se nas evidências concretas registradas no ciclo:
 
 - **Testes Manuais:** 15 CTs planejados e executados; 12 aprovados de primeira, 3 reprovados, 0 bloqueados. Após reteste, 100% de aprovação técnica.
-- **Automação:** Cenários da regra central (RF06/RF07) cobertos em 5 parametrizações `pytest` (test_24h, test_menos_24h, etc.). Cobertura de linhas em `agendamento.py` é 100%. Limitações: regras de UI e autenticação não estão automatizadas na camada de unidade.
+- **Automação:** Cenários da regra central (RF06/RF07) cobertos em 5 parametrizações `pytest` (test_24h, test_menos_24h, etc.). Cobertura de linhas em `src/agendamento.py` é 100%. Limitações: regras de UI e autenticação não estão automatizadas na camada de unidade.
 - **Defeitos:** 3 encontrados (1 Crítico, 2 Altos). 3 corrigidos. Todos retestados e fechados sem reaberturas.
 - **Regressão:** Executada para todas as áreas ao redor das correções (lógica de tempo, verificação de auth/propriedade, filtragem de inativos). Nenhuma regressão inseriu defeito novo.
 - **Riscos:** Os 5 riscos primários mapeados na Etapa 2 foram validados e mitigados. Vazamento (LGPD) e regras operacionais estão estáveis. Risco remanescente: a concorrência real em carga (performance) não foi testada, conforme escopo inicial "sem testes de performance".
