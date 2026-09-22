@@ -1,7 +1,7 @@
 # Dossiê de QA — MediClinic
 
 **Repositório do projeto:**  
-[ Acessar repositório no GitHub](https://github.com/seu-usuario/seu-repositorio)
+[ Acessar repositório no GitHub](https://github.com/igorr0cha/testes_02)
 
 **CEUB - Centro de Ensino Unificado de Brasília**  
 **Testes e Qualidade de Software**  
