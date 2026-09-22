@@ -1,9 +1,13 @@
-# Dossiê de QA da MediClinic
+# Dossiê de QA — MediClinic
+
+**Repositório do projeto:**  
+[ Acessar repositório no GitHub](https://github.com/seu-usuario/seu-repositorio)
 
 **CEUB - Centro de Ensino Unificado de Brasília**  
 **Testes e Qualidade de Software**  
 **Equipe:** Aluno(s): Gustavo Henrique Silva Fernandes RA: 22300372 e Ígor Tavares Rocha RA: 22304380  
 **Data:** 21 de Setembro de 2026
+
 
 ---
 
